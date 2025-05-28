@@ -7,6 +7,7 @@ import { useRef } from "react";
 import { RiMenu3Fill } from "react-icons/ri";
 import { RxCross2 } from "react-icons/rx";
 import { SlBasket } from "react-icons/sl";
+import { Button } from "./ui/button";
 
 
 
@@ -40,8 +41,8 @@ const Navbar = () => {
     <nav className=" bg-white text-white shadow-md flex justify-between items-center px-6 py-4 ">
        
        {/* hamburger menu */}
-      <div className="flex items-center justify-between space-x-4">
-         <div className="flex items-center space-x-4">
+      <div className="flex items-center justify-between">
+         <div className="flex items-center space-x-2">
             <div className="text-gray-700 md:hidden text-2xl">
               <RiMenu3Fill onClick={openMenu} />
             </div>
@@ -54,10 +55,10 @@ const Navbar = () => {
          </div>
 
               {/*Search bar*/}
-           <div className="flex items-center bg-gray-100 border border-gray-300 rounded-full px-4 py-2 w-full max-w-md mx-4">
+           <div className="flex items-center bg-gray-100 border border-gray-300 rounded-full px-4 py-2 w-34 mx-2">
              <input
             type="text"
-            placeholder="Search products..."
+            placeholder="Search products"
             className="bg-transparent flex-grow text-sm text-gray-800 focus:outline-none placeholder:text-gray-400"
             />
             </div>
@@ -98,11 +99,11 @@ const Navbar = () => {
                     </div>
              </div>
                 ) : (
-             <div className="text-gray-700">
+             <div className="text-gray-700 pl-4">
                 <SignInButton mode="modal" >
-                  <button className="bg-red-500 text-white px-4 py-2   rounded hover:bg-red-700 transition-colors">
+                  <Button className="bg-red-500 text-white px-4 py-2   rounded hover:bg-red-700 transition-colors">
                     Sign Up
-                  </button>
+                  </Button>
                 </SignInButton>
             </div>
            )}

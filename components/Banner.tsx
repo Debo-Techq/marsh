@@ -29,6 +29,8 @@ const Banner = () => {
               loading="lazy"
               src={image.src}
               alt={image.alt}
+              width={800}
+              height={400}       
               className="h-64 w-full object-cover sm:h-80 md:h-[400px] lg:h-[450px]"
             />
           </div>
