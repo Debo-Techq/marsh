@@ -37,7 +37,7 @@ const ProductList = ({ products }: Props) => {
 
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
           {filteredProducts.map((product) => {
-            const price = product.default_price as any;
+            const price = product.default_price as Stripe.Price;
             return (
               <Link
                 href={`/product/${product.id}`}
@@ -63,7 +63,7 @@ const ProductList = ({ products }: Props) => {
                 )}
 
                 <p className="text-gray-800 font-bold">
-                  ${(price.unit_amount / 100).toFixed(2)}
+                  {price.unit_amount ? `$${(price.unit_amount / 100).toFixed(2)}` : "Price not available"}
                 </p>
 
                 <button className="mt-4 w-full bg-black text-white py-2 rounded hover:bg-gray-800 transition">

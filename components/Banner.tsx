@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
@@ -24,7 +25,7 @@ const Banner = () => {
       >
         {bannerImages.map((image, index) => (
           <div key={index}>
-            <img
+            <Image
               loading="lazy"
               src={image.src}
               alt={image.alt}

@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { stripe } from "@/lib/stripe";
 import Image from "next/image";
 import Link from "next/link";
+import Stripe from "stripe";
 
 export default async function Home() {
   const products = await stripe.products.list({
@@ -13,7 +14,7 @@ export default async function Home() {
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 p-6">
       {products.data.map((product) => {
-        const price = product.default_price as any;
+        const price = product.default_price as Stripe.Price;
         return (
           <Link href={`/product/${product.id}`}
             key={product.id}
@@ -37,7 +38,8 @@ export default async function Home() {
                   </p>
                 )}
                 <p className="text-gray-800 font-bold">
-                  ${(price.unit_amount / 100).toFixed(2)}
+                  {price.unit_amount ? `$${(price.unit_amount / 100).toFixed(2)}` : "Price not available"}
+
                 </p>
               </div>
             </div>
