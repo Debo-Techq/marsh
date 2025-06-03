@@ -3,7 +3,7 @@
 import { useCartStore } from "@/store/cart-store";
 import { ClerkLoaded, SignInButton, useUser } from "@clerk/nextjs";
 import Link from "next/link";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { RiMenu3Fill } from "react-icons/ri";
 import { RxCross2 } from "react-icons/rx";
 import { SlBasket } from "react-icons/sl";
@@ -18,19 +18,7 @@ const Navbar = () => {
 
 
     //Hamburger menu 
-  const sideMenuRef = useRef<HTMLDivElement | null>(null);
-
-  const openMenu = () => {
-    if (sideMenuRef.current) {
-    sideMenuRef.current.style.transform = "translateX(0%)";
- }
-  };
-
-  const closeMenu = () => {
-    if (sideMenuRef.current) {
-    sideMenuRef.current.style.transform = "translateX(-100%)";
-    }
-  };
+    const [isOpen, setIsOpen] = useState(false); 
    
   //basket count 
   const { items } = useCartStore();
@@ -44,7 +32,7 @@ const Navbar = () => {
       <div className="flex items-center justify-between">
          <div className="flex items-center space-x-2">
             <div className="text-gray-700 md:hidden text-2xl">
-              <RiMenu3Fill onClick={openMenu} />
+              <RiMenu3Fill onClick={() => setIsOpen(true)} />
             </div>
 
 
@@ -115,12 +103,11 @@ const Navbar = () => {
 
           {/* ...............mobile menu........... */}
 
-      <div
-        ref={sideMenuRef}
-        className="md:hidden bg-red-400 fixed top-0 left-0 z-[100] bottom-0 w-72 h-screen p-6  transition-transform duration-500 overflow-hidden"
+      { isOpen && (<div
+        className="md:hidden bg-red-400 fixed top-0 left-0 z-[100] bottom-0 w-72 h-screen p-6  transition-all duration-500 overflow-hidden"
       >
         <button className="ml-auto block text-2xl">
-          <RxCross2 onClick={closeMenu} />
+          <RxCross2 onClick={() => setIsOpen(false)}  />
         </button>
 
         <ul className="grid grid-cols-1 gap-6 justify-center items-center m-20 font-medium text-gray-700">
@@ -128,7 +115,7 @@ const Navbar = () => {
           <Link href="/product">Product</Link>
           <Link href="/contact">Contact</Link>
         </ul>
-      </div>
+      </div>)}
     </nav>
   );
 };
