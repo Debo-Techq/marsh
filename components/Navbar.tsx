@@ -3,7 +3,7 @@
 import { useCartStore } from "@/store/cart-store";
 import { ClerkLoaded, SignInButton, useUser } from "@clerk/nextjs";
 import Link from "next/link";
-import { useRef, useState } from "react";
+import { useState } from "react";
 import { RiMenu3Fill } from "react-icons/ri";
 import { RxCross2 } from "react-icons/rx";
 import { SlBasket } from "react-icons/sl";
